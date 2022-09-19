@@ -1,87 +1,8 @@
-#include <iostream>
-#include <fstream>
+#include "fileUtil.h"
 
 using namespace std;
 
-void assertFileOpened(const ifstream &file){
-    if(file) return;
-    raise(-1);
-}
-
-void assertFileOpened(const ofstream &file){
-    if(file) return;
-    raise(-1);
-}
-
-void assertFileErrors(const ifstream &file){
-    if(file.good()) return;
-    raise(-2);
-}
-
-void assertFileErrors(const ofstream &file){
-    if(file.good()) return;
-    raise(-2);
-}
-
-void createFile(const string &filename){
-    ofstream file(filename);
-    assertFileOpened(file);
-
-    assertFileErrors(file);
-    file.close();
-}
-
-void printFile(const string &filename){
-    ifstream file(filename);
-    assertFileOpened(file);
-
-    string line;
-    while(getline(file, line)) cout << line;
-
-    assertFileErrors(file);
-    file.close();
-}
-
-void appendToFile(const string &filename, const string &new_line){
-    ofstream file(filename, ios::app);
-    assertFileOpened(file);
-
-    file << new_line;
-
-    assertFileErrors(file);
-    file.close();
-}
-
-int getNumberFromFile(const string &filename, int n){
-    ifstream file(filename);
-    assertFileOpened(file);
-
-    int result;
-
-    for(int q = 0; q < n; q++) cin >> result;
-
-    assertFileErrors(file);
-    file.close();
-
-    return result;
-}
-
-int getNumberOfNumbersInFile(const string &filename){
-    ifstream file(filename);
-    assertFileOpened(file);
-
-    int result = 0;
-    int n;
-
-    while(cin >> n) result++;
-
-    assertFileErrors(file);
-    file.close();
-
-    return result;
-}
-
-int main() {
+void task1(){
     string filename, line;
     int command, n;
 
@@ -93,15 +14,17 @@ int main() {
         cout << "3 - append line to file" << endl;
         cout << "4 - get n-th number from file" << endl;
         cout << "5 - get quantity of numbers in file" << endl;
+        cout << "6 - append line to start of file" << endl;
         cin >> command;
 
-        cout << "Enter file name: ";
+        cout << "Enter file name:" << endl;
         cin >> filename;
+        filename = "../" + filename;
 
         try {
             switch (command) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     createFile(filename);
                     break;
@@ -109,17 +32,24 @@ int main() {
                     printFile(filename);
                     break;
                 case 3:
-                    cout << "Enter line to append: ";
-                    cin >> line;
+                    getchar();
+                    cout << "Enter line to append:" << endl;
+                    getline(cin, line);
                     appendToFile(filename, line);
                     break;
                 case 4:
-                    cout << "Enter n: ";
+                    cout << "Enter n:" << endl;
                     cin >> n;
                     cout << "n-th number is " << getNumberFromFile(filename, n) << endl;
                     break;
                 case 5:
                     cout << "There is " << getNumberOfNumbersInFile(filename) << " numbers in file" << endl;
+                    break;
+                case 6:
+                    getchar();
+                    cout << "Enter line to append:" << endl;
+                    getline(cin, line);
+                    appendToStartOfFile(filename, line);
                     break;
                 default:
                     cout << "There is no such a command" << endl;
@@ -129,11 +59,36 @@ int main() {
             switch (errCode) {
                 case -1:
                     cout << "Error in file opening" << endl;
+                    break;
                 case -2:
                     cout << "Error occurred while working with file" << endl;
+                    break;
                 default:
-                    return errCode;
+                    return;
             }
         }
+        cout << endl;
+    }
+}
+
+void task2(){
+
+}
+
+int main() {
+    int n;
+    cout << "Choose task 1 or 2: ";
+    cin >> n;
+
+    switch(n){
+        case 1:
+            task1();
+            break;
+        case 2:
+            task2();
+            break;
+        default:
+            cout << "There is no such a task" << endl;
+            break;
     }
 }
