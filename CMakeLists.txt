@@ -3,4 +3,4 @@ project(SiADO2)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(SiADO2 main.cpp fileUtil.h fileUtil.cpp)
+add_executable(SiADO2 main.cpp fileUtil.h fileUtil.cpp phoneBookUtil.h phoneBookUtil.cpp)
