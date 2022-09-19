@@ -9,8 +9,10 @@ using namespace std;
 
 void assertFileOpened(const ifstream &file);
 void assertFileOpened(const ofstream &file);
+void assertFileOpened(const fstream &file);
 void assertFileErrors(const ifstream &file);
 void assertFileErrors(const ofstream &file);
+void assertFileErrors(const fstream &file);
 
 void createFile(const string &filename);
 void printFile(const string &filename);

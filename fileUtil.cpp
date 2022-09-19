@@ -10,12 +10,22 @@ void assertFileOpened(const ofstream &file){
     throw -1;
 }
 
+void assertFileOpened(const fstream &file){
+    if(file.is_open()) return;
+    throw -1;
+}
+
 void assertFileErrors(const ifstream &file){
     if(file.good() or file.eof()) return;
     throw -2;
 }
 
 void assertFileErrors(const ofstream &file){
+    if(file.good() or file.eof()) return;
+    throw -2;
+}
+
+void assertFileErrors(const fstream &file){
     if(file.good() or file.eof()) return;
     throw -2;
 }
