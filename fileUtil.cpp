@@ -53,7 +53,7 @@ void appendToFile(const string &filename, const string &new_line){
     ofstream file(filename, ios_base::app);
     assertFileOpened(file);
 
-    file << new_line;
+    file << new_line << endl;
 
     assertFileErrors(file);
     file.close();

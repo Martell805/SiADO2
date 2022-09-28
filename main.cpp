@@ -166,12 +166,53 @@ void task2(){
     }
 }
 
+void test(){
+    cout << "Task 1:" << endl;
+    createFile("../file.txt");
+    appendToFile("../file.txt", "5 6 7 8");
+    appendToStartOfFile("../file.txt", "1 2 3");
+    cout << "Content of file:" << endl;
+    printFile("../file.txt");
+    cout << "Forth number in file: (should be 5)" << endl;
+    cout << getNumberFromFile("../file.txt", 4) << endl;
+    cout << "Forth number of numbers in file: (should be 7)" << endl;
+    cout << getNumberOfNumbersInFile("../file.txt") << endl;
+
+    cout << "Task 2:" << endl;
+    createFile("../file.txt");
+    appendToFile("../file.txt", "22350 addr1 name1");
+    appendToFile("../file.txt", "22360 addr2 name2");
+    appendToFile("../file.txt", "25360 addr3 name3");
+    appendToFile("../file.txt", "42360 addr4 name4");
+    cout << "Initial text file:" << endl;
+    printFile("../file.txt");
+    convertTextToBinary("../file.txt", "../binary.dat");
+    cout << "Binary file:" << endl;
+    printBinaryFile("../binary.dat");
+    convertBinaryToText("../binary.dat", "../new_file.txt");
+    cout << "New text file:" << endl;
+    printFile("../new_file.txt");
+    cout << "Second record`s phone is:" << endl;
+    PhoneUser user{};
+    user = getRecord("../binary.dat", 1);
+    cout << user.phone << endl;
+    putAllStartsWith("../binary.dat", "../str_text.txt", "223");
+    cout << "Text file with records starts with 223:" << endl;
+    printFile("../str_text.txt");
+    deleteAllStartsWith("../binary.dat", '2');
+    cout << "Binary file all records started with 2 deleted:" << endl;
+    printBinaryFile("../binary.dat");
+}
+
 int main() {
     int n;
     cout << "Choose task 1 or 2:" << endl;
     cin >> n;
 
     switch(n){
+        case 0:
+            test();
+            break;
         case 1:
             task1();
             break;
