@@ -179,29 +179,49 @@ void test(){
     cout << getNumberOfNumbersInFile("../file.txt") << endl;
 
     cout << "Task 2:" << endl;
-    createFile("../file.txt");
-    appendToFile("../file.txt", "22350 addr1 name1");
-    appendToFile("../file.txt", "22360 addr2 name2");
-    appendToFile("../file.txt", "25360 addr3 name3");
-    appendToFile("../file.txt", "42360 addr4 name4");
+
+    cout << "Test 1: ordinary file" << endl;
+    createFile("../file1.txt");
+    appendToFile("../file1.txt", "22350 addr1 name1");
+    appendToFile("../file1.txt", "22360 addr2 name2");
+    appendToFile("../file1.txt", "25360 addr3 name3");
+    appendToFile("../file1.txt", "42360 addr4 name4");
+
     cout << "Initial text file:" << endl;
-    printFile("../file.txt");
-    convertTextToBinary("../file.txt", "../binary.dat");
+    printFile("../file1.txt");
+    convertTextToBinary("../file1.txt", "../binary1.dat");
     cout << "Binary file:" << endl;
-    printBinaryFile("../binary.dat");
-    convertBinaryToText("../binary.dat", "../new_file.txt");
+    printBinaryFile("../binary1.dat");
+    convertBinaryToText("../binary1.dat", "../new_file1.txt");
     cout << "New text file:" << endl;
-    printFile("../new_file.txt");
+    printFile("../new_file1.txt");
     cout << "Second record`s phone is:" << endl;
     PhoneUser user{};
-    user = getRecord("../binary.dat", 1);
+    user = getRecord("../binary1.dat", 1);
     cout << user.phone << endl;
-    putAllStartsWith("../binary.dat", "../str_text.txt", "223");
+    putAllStartsWith("../binary1.dat", "../str_text1.txt", "223");
     cout << "Text file with records starts with 223:" << endl;
-    printFile("../str_text.txt");
-    deleteAllStartsWith("../binary.dat", '2');
+    printFile("../str_text1.txt");
+    deleteAllStartsWith("../binary1.dat", '2');
     cout << "Binary file all records started with 2 deleted:" << endl;
-    printBinaryFile("../binary.dat");
+    printBinaryFile("../binary1.dat");
+
+    cout << "Test 2: blank file" << endl;
+    cout << "Initial text file:" << endl;
+    createFile("../file2.txt");
+    printFile("../file2.txt");
+    convertTextToBinary("../file2.txt", "../binary2.dat");
+    cout << "Binary file:" << endl;
+    printBinaryFile("../binary2.dat");
+    convertBinaryToText("../binary2.dat", "../new_file2.txt");
+    cout << "New text file:" << endl;
+    printFile("../new_file2.txt");
+    putAllStartsWith("../binary2.dat", "../str_text2.txt", "223");
+    cout << "Text file with records starts with 223:" << endl;
+    printFile("../str_text2.txt");
+    deleteAllStartsWith("../binary2.dat", '2');
+    cout << "Binary file all records started with 2 deleted:" << endl;
+    printBinaryFile("../binary2.dat");
 }
 
 int main() {
